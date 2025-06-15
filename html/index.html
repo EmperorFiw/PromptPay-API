@@ -1,0 +1,42 @@
+<script>
+	document.getElementById('generateQRButton').addEventListener('click', () => {
+		const phoneNumber = document.getElementById('phoneNumberInput').value.trim();
+		let amount = parseFloat(document.getElementById('amountInput').value);
+
+		if (!phoneNumber) {
+			alert('กรุณากรอกหมายเลข PromptPay');
+			return;
+		}
+
+		if (isNaN(amount) || amount < 1) {
+			amount = 1;
+		}
+
+		fetch('http://localhost:3000/api/generate', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ phoneNumber, amount })
+		})
+		.then(res => res.json())
+		.then(data => {
+			const qrContainer = document.getElementById('qrCodeContainer');
+			qrContainer.innerHTML = '';
+
+			if (data.payload) {
+				QRCode.toCanvas(data.payload, { width: 256 }, (error, canvas) => {
+					if (error) {
+						console.error(error);
+						qrContainer.textContent = '❌ เกิดข้อผิดพลาดในการสร้าง QR';
+					} else {
+						qrContainer.appendChild(canvas);
+					}
+				});
+			} else {
+				alert(data.error || '❌ เกิดข้อผิดพลาด');
+			}
+		})
+		.catch(err => {
+			alert('❌ ไม่สามารถติดต่อ API ได้: ' + err.message);
+		});
+	});
+</script>
