@@ -1,42 +1,70 @@
-<script>
-	document.getElementById('generateQRButton').addEventListener('click', () => {
-		const phoneNumber = document.getElementById('phoneNumberInput').value.trim();
-		let amount = parseFloat(document.getElementById('amountInput').value);
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>สร้าง QR PromptPay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
 
-		if (!phoneNumber) {
-			alert('กรุณากรอกหมายเลข PromptPay');
-			return;
-		}
+  <main class="container">
+    <h1 class="title">สร้าง QR PromptPay</h1>
 
-		if (isNaN(amount) || amount < 1) {
-			amount = 1;
-		}
+    <label class="input-group">
+      <span class="label-text">หมายเลข Prompt Pay</span>
+      <input type="text" id="phoneNumberInput" maxlength="13" placeholder="0812345678" />
+    </label>
 
-		fetch('http://localhost:3000/api/generate', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ phoneNumber, amount })
-		})
-		.then(res => res.json())
-		.then(data => {
-			const qrContainer = document.getElementById('qrCodeContainer');
-			qrContainer.innerHTML = '';
+    <label class="input-group">
+      <span class="label-text">จำนวนเงิน (ไม่ใส่ = ไม่มีจำนวนเงิน)</span>
+      <input type="number" id="amountInput" placeholder="ใส่จำนวนเงิน 1.00" step="1.00" min="1" />
+    </label>
 
-			if (data.payload) {
-				QRCode.toCanvas(data.payload, { width: 256 }, (error, canvas) => {
-					if (error) {
-						console.error(error);
-						qrContainer.textContent = '❌ เกิดข้อผิดพลาดในการสร้าง QR';
-					} else {
-						qrContainer.appendChild(canvas);
-					}
-				});
-			} else {
-				alert(data.error || '❌ เกิดข้อผิดพลาด');
-			}
-		})
-		.catch(err => {
-			alert('❌ ไม่สามารถติดต่อ API ได้: ' + err.message);
-		});
-	});
-</script>
+    <button id="generateQRButton" class="btn-primary">สร้าง QR Code</button>
+
+    <div id="qrCodeContainer"></div>
+  </main>
+  <script>
+    document.getElementById('generateQRButton').addEventListener('click', () => {
+      const phoneNumber = document.getElementById('phoneNumberInput').value.trim();
+      let amount = parseFloat(document.getElementById('amountInput').value);
+  
+      if (!phoneNumber) {
+        alert('กรุณากรอกหมายเลข PromptPay');
+        return;
+      }
+      if (isNaN(amount) || amount < 1) {
+        amount = 1;
+      }
+      fetch('http://localhost:3000/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber, amount })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const qrContainer = document.getElementById('qrCodeContainer');
+        qrContainer.innerHTML = '';
+  
+        if (data.payload) {
+          QRCode.toCanvas(data.payload, { width: 256 }, (error, canvas) => {
+            if (error) {
+              console.error(error);
+              qrContainer.textContent = '❌ เกิดข้อผิดพลาดในการสร้าง QR';
+            } else {
+              qrContainer.appendChild(canvas);
+            }
+          });
+        } else {
+          alert(data.error || '❌ เกิดข้อผิดพลาด');
+        }
+      })
+      .catch(err => {
+        alert('❌ ไม่สามารถติดต่อ API ได้: ' + err.message);
+      });
+    });
+  </script>
+</body>
+</html>

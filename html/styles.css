@@ -1,85 +1,84 @@
 /* Container กลางหน้าจอ */
 .container {
-    max-width: 400px;
-    margin: 3rem auto;
-    background-color: #ffffff;
-    padding: 2rem 2.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    font-family: "Noto Sans Thai", "Arial", sans-serif;
-  }
-  
-  /* หัวเรื่อง */
-  .title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
-  /* กลุ่ม input + label */
-  .input-group {
-    display: block;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* ป้ายกำกับ */
-  .label-text {
-    display: block;
-    font-weight: 600;
-    color: #4a4a4a;
-    margin-bottom: 0.4rem;
-  }
-  
-  /* ช่องกรอกข้อมูล */
-  input[type="text"],
-  input[type="number"] {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: 1.5px solid #d1d5db;
-    border-radius: 0.5rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-sizing: border-box;
-  }
-  
-  input[type="text"]:focus,
-  input[type="number"]:focus {
-    outline: none;
-    border-color: #7c3aed;
-    box-shadow: 0 0 5px rgba(124, 58, 237, 0.5);
-  }
-  
-  /* ปุ่ม */
-  .btn-primary {
-    width: 100%;
-    background-color: #7c3aed; /* สีม่วง */
-    color: white;
-    font-weight: 600;
-    padding: 0.75rem 0;
-    font-size: 1.125rem;
-    border: none;
-    border-radius: 0.6rem;
-    cursor: pointer;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
-  }
-  
-  .btn-primary:hover {
-    background-color: #6b21a8;
-    box-shadow: 0 8px 20px rgba(107, 33, 168, 0.6);
-  }
-  
-  .btn-primary:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.8);
-  }
-  
-  /* ส่วนแสดง QR Code */
-  #qrCodeContainer {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  
+  max-width: 400px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Noto Sans Thai", "Arial", sans-serif;
+}
+
+/* หัวเรื่อง */
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* กลุ่ม input + label */
+.input-group {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* ป้ายกำกับ */
+.label-text {
+  display: block;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 0.4rem;
+}
+
+/* ช่องกรอกข้อมูล */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 5px rgba(124, 58, 237, 0.5);
+}
+
+/* ปุ่ม */
+.btn-primary {
+  width: 100%;
+  background-color: #7c3aed; /* สีม่วง */
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: #6b21a8;
+  box-shadow: 0 8px 20px rgba(107, 33, 168, 0.6);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.8);
+}
+
+/* ส่วนแสดง QR Code */
+#qrCodeContainer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
